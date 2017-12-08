@@ -1,0 +1,9 @@
+<html>
+  <body>
+    <h1>Thanks for buying from Jungle!</h1>
+    <% @order_total = 0 %>
+    <% @order.line_items.product.each do |item, quantity| %>
+      <%= render 'item', item: item, quantity: item.quantity %>
+    <% end %>
+  </body>
+</html>
