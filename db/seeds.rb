@@ -132,5 +132,22 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+# REVIEWS
+
+puts 'Re-creating reviews...'
+
+prod1 = Product.find(1)
+prod1.reviews.create!({
+  product_id: prod1,
+  user_id: 1,
+  description: 'This is a great, classy shirt.',
+  rating: 5
+})
+prod1.reviews.create!({
+  product_id: prod1,
+  user_id: 2,
+  description: 'Terrible shirt. Not classy.',
+  rating: 1
+})
 
 puts "DONE!"
