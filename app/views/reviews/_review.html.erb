@@ -1,0 +1,22 @@
+<% user = User.find(review.user_id) %>
+
+<article class="reviews">
+
+  <header>
+    <h3 class="stars">
+      <% (1..review.rating).each do |star| %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+      <% (review.rating..4).each do |star| %>
+      <i class="fa fa-star-o" aria-hidden="true"></i>
+      <% end %>
+    </h3>
+    <h4>
+      By <%= user.first_name %><%= user.last_name %>
+    </h4>
+    <p>
+      <%= review.description %>
+    </p>
+  </header>
+
+</article>
