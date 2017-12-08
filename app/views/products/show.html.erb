@@ -27,13 +27,23 @@
     </div>
 
     <div class="row">
-
-      <div class="reviews">
-
-        <h2>Ratings</h2>
-        <%= render @product.reviews %>
-
+      <div class="col-sm-8">
+        <%= form_for [@product, @review] do |f| %>
+          <%= f.label :description, 'Description: ' %>
+          <%= f.text_area(:description, in: 1..5) %>
+          <%= f.label :rating, 'Rating: ' %>
+          <%= f.select :rating, [1, 2, 3, 4, 5] %>
+          <%= f.submit 'Submit' %>
+        <% end %>
       </div>
+
+      <div class="col-sm-4">
+        <div class="reviews">
+          <h2>Ratings</h2>
+          <%= render @product.reviews %>
+        </div>
+      </div>
+
 
     </div>
 
