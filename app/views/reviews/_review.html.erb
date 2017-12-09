@@ -5,15 +5,18 @@
   <header>
     <h3 class="stars">
       <% (1..review.rating).each do |star| %>
-      <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
       <% end %>
       <% (review.rating..4).each do |star| %>
-      <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
       <% end %>
     </h3>
     <h4>
       By <%= user.first_name %> <%= user.last_name %>
     </h4>
+    <% if current_user == user %>
+    <%= link_to 'Destroy',  product_review_path(review.product_id, review.id),  method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+    <% end %>
     <p>
       <%= review.description %>
     </p>
