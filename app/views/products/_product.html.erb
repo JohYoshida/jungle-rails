@@ -1,5 +1,5 @@
-<% reviews = @reviews.where(product_id: product.id) %>
-<% total_ratings = 0 %>
+<% @ratings = Review.where(product_id: product).pluck(:rating) %>
+<% rating = @ratings.sum / @ratings.size.to_f %>
 
 <article class="product">
   <header>
@@ -9,15 +9,12 @@
     <% end %>
   </header>
   <h4 class="average-rating">
-    <% reviews.each do |review| %>
-      <% total_ratings += review.rating %>
-    <% end %>
 
-    <% if total_ratings > 0 %>
-      <% (1..(total_ratings / reviews.size)).each do |star| %>
+    <% if rating > 0 %>
+      <% (1..rating.to_i).each do |star| %>
         <i class="fa fa-star" aria-hidden="true"></i>
       <% end %>
-      <% ((total_ratings / reviews.size)..4).each do |star| %>
+      <% (rating.to_i..4).each do |star| %>
         <i class="fa fa-star-o" aria-hidden="true"></i>
       <% end %>
     <% else %>
