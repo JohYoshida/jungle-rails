@@ -14,7 +14,12 @@
     <% end %>
 
     <% if total_ratings > 0 %>
-      Average rating: <%= total_ratings / reviews.size %> stars
+      <% (1..(total_ratings / reviews.size)).each do |star| %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+      <% ((total_ratings / reviews.size)..4).each do |star| %>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+      <% end %>
     <% else %>
       No ratings yet
     <% end %>
