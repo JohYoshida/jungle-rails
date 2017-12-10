@@ -15,24 +15,23 @@ A mini e-commerce application built with Ruby on Rails 4.2, based on Lighthouse 
 ## Features
 View all products, or sort by category, and add products to your shopping cart.
 ![View all products or sort by category]
-(https://github.com/JohYoshida/jungle-rails/blob/master/data/products-index.png)
+(https://github.com/JohYoshida/jungle-rails/blob/master/data/products-index.png?raw=true)
 
 Review individual products, see their information, and reviews left by other users.
 ![View product and its reviews]
-(https://github.com/JohYoshida/jungle-rails/blob/master/data/products-show.png)
+(https://github.com/JohYoshida/jungle-rails/blob/master/data/products-show.png?raw=true)
 
 Purchase products in your shopping cart using Stripe for payments.
 ![Purchase products in cart]
-(https://github.com/JohYoshida/jungle-rails/blob/master/data/my-cart.png)
+(https://github.com/JohYoshida/jungle-rails/blob/master/data/my-cart.png?raw=true)
 
 Upon successful purchase, review your order. If you're logged in, you will receive an email with a breakdown of your order.
 ![Review your order]
-(https://github.com/JohYoshida/jungle-rails/blob/master/data/order-confirmation.png)
+(https://github.com/JohYoshida/jungle-rails/blob/master/data/order-confirmation.png?raw=true)
 
 As an admin, add or remove products, and create new categories to arrange them under
 ![Add products]
-(https://github.com/JohYoshida/jungle-rails/blob/master/data/admin-categories.png)
-
+(https://github.com/JohYoshida/jungle-rails/blob/master/data/admin-categories.png?raw=true)
 ## Dependencies
 
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
