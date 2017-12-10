@@ -1,6 +1,6 @@
 # Jungle
 
-A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
+A mini e-commerce application built with Ruby on Rails 4.2, based on Lighthouse Labs' Jungle project. Created for the purpose of learning Rails and working with an existing codebase.
 
 
 ## Setup
@@ -11,15 +11,27 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 4. Create `config/secrets.yml` by copying `config/secrets.example.yml`
 5. Run `bin/rake db:reset` to create, load and seed db
 6. Create .env file based on .env.example
-7. Sign up for a Stripe account
-8. Put Stripe (test) keys into appropriate .env vars
-9. Run `bin/rails s -b 0.0.0.0` to start the server
 
-## Stripe Testing
+## Features
+View all products, or sort by category, and add products to your shopping cart.
+![View all products or sort by category]
+(https://github.com/JohYoshida/jungle-rails/blob/master/data/products-index.png)
 
-Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
+Review individual products, see their information, and reviews left by other users.
+![View product and its reviews]
+(https://github.com/JohYoshida/jungle-rails/blob/master/data/products-show.png)
 
-More information in their docs: <https://stripe.com/docs/testing#cards>
+Purchase products in your shopping cart using Stripe for payments.
+![Purchase products in cart]
+(https://github.com/JohYoshida/jungle-rails/blob/master/data/my-cart.png)
+
+Upon successful purchase, review your order. If you're logged in, you will receive an email with a breakdown of your order.
+![Review your order]
+(https://github.com/JohYoshida/jungle-rails/blob/master/data/order-confirmation.png)
+
+As an admin, add or remove products, and create new categories to arrange them under
+![Add products]
+(https://github.com/JohYoshida/jungle-rails/blob/master/data/admin-categories.png)
 
 ## Dependencies
 
