@@ -5,8 +5,13 @@
 
 // App
 @import "products";
+@import "colors";
 
 // Global
 body {
   padding-top: 70px;
+}
+
+.rating-star {
+  color: $rating-star;
 }

@@ -12,10 +12,10 @@
 
     <% if rating > 0 %>
       <% (1..rating.to_i).each do |star| %>
-        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa rating-star fa-star" aria-hidden="true"></i>
       <% end %>
       <% (rating.to_i..4).each do |star| %>
-        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa rating-star fa-star-o" aria-hidden="true"></i>
       <% end %>
     <% else %>
       No ratings yet
