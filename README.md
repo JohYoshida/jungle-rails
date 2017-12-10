@@ -3,6 +3,12 @@
 A mini e-commerce application built with Ruby on Rails 4.2, based on Lighthouse Labs' Jungle project. Created for the purpose of learning Rails and working with an existing codebase.
 
 
+Users can add products to a shopping cart and purchase them using Stripe for transactions. They can register an account in order to leave reviews on products.
+
+Average ratings are displayed on the product index page. Reviews and ratings can be found on individual product pages.
+
+Admins can add new products or product categories to the site.
+
 ## Setup
 
 1. Fork & Clone
