@@ -148,5 +148,13 @@ RSpec.describe User, type: :model do
         expect(user).to be_nil
       end
     end
+
+    context 'when email preceeded by spaces' do
+      it 'should still be valid' do
+        user = User.authenticate_with_credentials(' test@test.com', 'password')
+        byebug
+        expect(user)
+      end
+    end
   end
 end
