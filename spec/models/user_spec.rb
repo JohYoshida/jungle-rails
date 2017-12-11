@@ -65,7 +65,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'when password or password_confirmation are empty' do
+    context 'when password is empty' do
       it 'can\'t be blank' do
         @user = User.create(
           first_name: 'first',
@@ -75,6 +75,19 @@ RSpec.describe User, type: :model do
           password_confirmation: ''
         )
         expect(@user.errors.get(:password)).to include('can\'t be blank')
+      end
+    end
+
+    context 'when password_confirmation is empty' do
+      it 'can\'t be blank' do
+        @user = User.create(
+          first_name: 'first',
+          last_name: 'last',
+          email: 'email',
+          password: '',
+          password_confirmation: ''
+        )
+        expect(@user.errors.get(:password_confirmation)).to include('can\'t be blank')
       end
     end
 
