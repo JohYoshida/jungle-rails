@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
   def self.authenticate_with_credentials(email, password)
+    email = email.delete(' ')
     user = User.find_by_email(email).try(:authenticate, password)
     if user
       user
