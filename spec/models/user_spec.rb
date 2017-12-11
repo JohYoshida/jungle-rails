@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when first_name is nil' do
-      it 'should be invalid' do
+      it 'can\'t be blank' do
         @user.first_name = nil
         @user.save
         expect(@user.errors.get(:first_name)).to include('can\'t be blank')
@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when last_name is nil' do
-      it 'should be invalid' do
+      it 'can\'t be blank' do
         @user.last_name = nil
         @user.save
         expect(@user.errors.get(:last_name)).to include('can\'t be blank')
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when email is nil' do
-      it 'should be invalid' do
+      it 'can\'t be blank' do
         @user.email = nil
         @user.save
         expect(@user.errors.get(:email)).to include('can\'t be blank')
@@ -42,7 +42,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when password is nil' do
-      it 'should be invalid' do
+      it 'can\'t be blank' do
         @user.password = nil
         @user.save
         expect(@user.errors.get(:password)).to include('can\'t be blank')
@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when password_confirmation is nil' do
-      it 'should be invalid' do
+      it 'can\'t be blank' do
         @user.password_confirmation = nil
         @user.save
         expect(@user.errors.get(:password_confirmation)).to include('can\'t be blank')
@@ -58,7 +58,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when password and password_confirmation are different' do
-      it 'should be invalid' do
+      it 'doesn\'t match password' do
         @user.password_confirmation = 'not_password'
         @user.save
         expect(@user.errors.get(:password_confirmation)).to include('doesn\'t match Password')
@@ -66,33 +66,33 @@ RSpec.describe User, type: :model do
     end
 
     context 'when password or password_confirmation are empty' do
-      it 'should be invalid' do
-        @user = User.new(
+      it 'can\'t be blank' do
+        @user = User.create(
           first_name: 'first',
           last_name: 'last',
           email: 'email',
           password: '',
           password_confirmation: ''
         )
-        expect(@user.valid?).not_to be_truthy
+        expect(@user.errors.get(:password)).to include('can\'t be blank')
       end
     end
 
     context 'when email matches another user' do
-      it 'should be invalid' do
-        @another_user = User.new(
+      it 'has already been taken' do
+        @another_user = User.create(
           first_name: 'first',
           last_name: 'last',
           email: 'TEST@TEST.com',
           password: 'password',
           password_confirmation: 'password'
         )
-        expect(@another_user.valid?).not_to be_truthy
+        expect(@another_user.errors.get(:email)).to include('has already been taken')
       end
     end
 
     context 'when password below minimum length' do
-      it 'should be invalid' do
+      it 'is too short(minimum length is 8 characters)' do
         @user = User.create(
           first_name: 'first',
           last_name: 'last',
@@ -100,8 +100,7 @@ RSpec.describe User, type: :model do
           password: 'pass',
           password_confirmation: 'pass'
         )
-        byebug
-        expect(@user.errors.get(:email)).to include('has already been taken')
+        expect(@user.errors.get(:password)).to include('is too short (minimum is 8 characters)')
       end
     end
   end
