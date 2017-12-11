@@ -87,8 +87,21 @@ RSpec.describe User, type: :model do
           password: 'password',
           password_confirmation: 'password'
         )
-        byebug
         expect(@another_user.valid?).not_to be_truthy
+      end
+    end
+
+    context 'when password below minimum length' do
+      it 'should be invalid' do
+        @user = User.create(
+          first_name: 'first',
+          last_name: 'last',
+          email: 'TEST@TEST.com',
+          password: 'pass',
+          password_confirmation: 'pass'
+        )
+        byebug
+        expect(@user.errors.get(:email)).to include('has already been taken')
       end
     end
   end
