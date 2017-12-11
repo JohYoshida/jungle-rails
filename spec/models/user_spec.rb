@@ -38,6 +38,17 @@ RSpec.describe User, type: :model do
         expect(@user.valid?).not_to be_truthy
       end
     end
-  end
 
+    context 'when email is nil' do
+      it 'should be invalid' do
+        @user = User.new(
+          first_name: 'first',
+          last_name: 'last',
+          password: 'password',
+          password_confirmation: 'password'
+        )
+        expect(@user.valid?).not_to be_truthy
+      end
+    end
+  end
 end
