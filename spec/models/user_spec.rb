@@ -109,11 +109,43 @@ RSpec.describe User, type: :model do
         @user = User.create(
           first_name: 'first',
           last_name: 'last',
-          email: 'TEST@TEST.com',
+          email: 'test@test.com',
           password: 'pass',
           password_confirmation: 'pass'
         )
         expect(@user.errors.get(:password)).to include('is too short (minimum is 8 characters)')
+      end
+    end
+  end
+
+  describe '.authenticate_with_credentials' do
+    before(:example) do
+      @user = User.create(
+        first_name: 'first',
+        last_name: 'last',
+        email: 'test@test.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+    end
+    context 'when credentials are correct' do
+      it 'should authenticate correctly' do
+        user = User.authenticate_with_credentials('test@test.com', 'password')
+        expect(user).to be_truthy
+      end
+    end
+
+    context 'when email is incorrect' do
+      it 'should be nil' do
+        user = User.authenticate_with_credentials('nottest@test.com', 'password')
+        expect(user).to be_nil
+      end
+    end
+
+    context 'when password is incorrect' do
+      it 'should be nil' do
+        user = User.authenticate_with_credentials('test@test.com', 'wrongpassword')
+        expect(user).to be_nil
       end
     end
   end
