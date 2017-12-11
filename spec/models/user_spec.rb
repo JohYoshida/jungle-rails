@@ -2,89 +2,66 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'Validations' do
+    before(:example) do
+      @user = User.create!(
+        first_name: 'first',
+        last_name: 'last',
+        email: 'test@test.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+    end
     context 'when all fields are filled' do
       it 'should be valid' do
-        @user = User.new(
-          first_name: 'first',
-          last_name: 'last',
-          email: 'email',
-          password: 'password',
-          password_confirmation: 'password'
-        )
         expect(@user.valid?).to be_truthy
       end
     end
 
     context 'when first_name is nil' do
       it 'should be invalid' do
-        @user = User.new(
-          last_name: 'last',
-          email: 'email',
-          password: 'password',
-          password_confirmation: 'password'
-        )
-        expect(@user.valid?).not_to be_truthy
+        @user.first_name = nil
+        @user.save
+        expect(@user.errors.get(:first_name)).to include('can\'t be blank')
       end
     end
 
     context 'when last_name is nil' do
       it 'should be invalid' do
-        @user = User.new(
-          first_name: 'first',
-          email: 'email',
-          password: 'password',
-          password_confirmation: 'password'
-        )
-        expect(@user.valid?).not_to be_truthy
+        @user.last_name = nil
+        @user.save
+        expect(@user.errors.get(:last_name)).to include('can\'t be blank')
       end
     end
 
     context 'when email is nil' do
       it 'should be invalid' do
-        @user = User.new(
-          first_name: 'first',
-          last_name: 'last',
-          password: 'password',
-          password_confirmation: 'password'
-        )
-        expect(@user.valid?).not_to be_truthy
+        @user.email = nil
+        @user.save
+        expect(@user.errors.get(:email)).to include('can\'t be blank')
       end
     end
 
     context 'when password is nil' do
       it 'should be invalid' do
-        @user = User.new(
-          first_name: 'first',
-          last_name: 'last',
-          email: 'email',
-          password_confirmation: 'password'
-        )
-        expect(@user.valid?).not_to be_truthy
+        @user.password = nil
+        @user.save
+        expect(@user.errors.get(:password)).to include('can\'t be blank')
       end
     end
 
     context 'when password_confirmation is nil' do
       it 'should be invalid' do
-        @user = User.new(
-          first_name: 'first',
-          last_name: 'last',
-          email: 'email',
-          password: 'password'
-        )
-        expect(@user.valid?).not_to be_truthy
+        @user.password_confirmation = nil
+        @user.save
+        expect(@user.errors.get(:password_confirmation)).to include('can\'t be blank')
       end
     end
 
     context 'when password and password_confirmation are different' do
       it 'should be invalid' do
-        @user = User.new(
-          first_name: 'first',
-          last_name: 'last',
-          email: 'email',
-          password: 'password',
-          password_confirmation: 'not_password'
-        )
-        expect(@user.valid?).not_to be_truthy
+        @user.password_confirmation = 'not_password'
+        @user.save
+        expect(@user.errors.get(:password_confirmation)).to include('doesn\'t match Password')
       end
     end
 
