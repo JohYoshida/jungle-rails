@@ -77,5 +77,19 @@ RSpec.describe User, type: :model do
         expect(@user.valid?).not_to be_truthy
       end
     end
+
+    context 'when email matches another user' do
+      it 'should be invalid' do
+        @another_user = User.new(
+          first_name: 'first',
+          last_name: 'last',
+          email: 'TEST@TEST.com',
+          password: 'password',
+          password_confirmation: 'password'
+        )
+        byebug
+        expect(@another_user.valid?).not_to be_truthy
+      end
+    end
   end
 end
